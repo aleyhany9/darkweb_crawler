@@ -29,7 +29,32 @@ def main_loop():
                 console.print("[red]Exiting the crawler...[/red]")
                 break
             elif command.startswith("visit"):
-                console.print("[blue]Visit command coming soon...[/blue]")
+                parts = command.split()
+                if len(parts) != 2:
+                    console.print("[red]Usage: visit <url>[/red]")
+                    continue
+
+                url = parts[1]
+                path = f"content/{url}.json"
+
+                if not os.path.exists(path):
+                    console.print(f"[red]No page found for {url}[/red]")
+                    continue
+                
+                with open(path, "r") as f:
+                    import json
+                    data = json.load(f)
+
+                console.print(f"\n[bold green]Visiting: {data['url']}[/bold green]")
+                console.print(f"[cyan]Title:[/cyan] {data['title']}")
+                console.print(f"[dim]Content:[/dim] {data['content']}")
+                console.print(f"[bold yellow]Links:[/bold yellow] {', '.join(data['links']) or 'None'}")
+
+                if "hidden_file" in data:
+                    file_info = data["hidden_file"]
+                    console.print(f"[bold magenta]Hidden File Detected:[/bold magenta] {file_info['name']} ({file_info['type']})")
+
+                print()    
             elif command == "":
                 continue
             else:
