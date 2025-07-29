@@ -4,7 +4,10 @@
     "content": "Welcome to the vault. Only trusted agents proceed.",
     "links": ["def456.onion"],
     "hidden_file": {
-        "name": "flag1.enc",
-        "type": "base64"
+      "name": "flag1.enc",
+      "type": "base64",
+      "key": "vault42",
+      "flag": "FLAG{trust_is_earned}"
     }
-}
+  }
+  

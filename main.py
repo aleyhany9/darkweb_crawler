@@ -4,6 +4,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 import pyfiglet
 import json
+import base64
 
 console = Console()
 visited = []
@@ -35,6 +36,42 @@ def download_file(filename):
                 console.print(f"[green]✓ Downloaded {filename} to downloads/[/green]")
                 return
     console.print(f"[red]File {filename} not found in visited pages.[/red]")            
+
+def decrypt_file(filename):
+    path = os.path.join("downloads", filename)
+    if not os.path.exists(path):
+        console.print(f"[red]File not found: {filename}[/red]")
+        return
+
+    with open(path, "r") as f:
+        try:
+            file_data = json.load(f)
+        except json.JSONDecodeError:
+            console.print(f"[red]Invalid file format.[/red]")
+            return
+    ftype = file_data.get("type")
+    if ftype == "encrypted_flag":
+        user_key = Prompt.ask("[yellow]Enter decryption key[/yellow]")
+        if user_key == file_data.get("key"):
+            console.print(f"[bold green]Decryption successful![/bold green] Flag: [cyan]{file_data['flag']}[/cyan]")
+        else:
+            console.print("[red]Incorrect key.[/red]")
+    elif ftype == "base64":
+        try:
+            decoded = base64.b64decode(file_data["content"]).decode()
+            console.print(f"[bold green]Base64 Decoded:[/bold green] {decoded}")
+        except:
+            console.print("[red]Failed to decode base64.[/red]")
+    elif ftype == "xor":
+        xor_key = Prompt.ask("[yellow]Enter single character XOR key[/yellow]")
+        try:
+            encrypted = bytes.fromhex(file_data["content"])
+            decrypted = ''.join(chr(b ^ ord(xor_key)) for b in encrypted)
+            console.print(f"[bold green]XOR Decrypted:[/bold green] {decrypted}")
+        except:
+            console.print("[red]Failed XOR decryption.[/red]")
+    else:
+        console.print(f"[red]Unknown file type: {ftype}[/red]")
 
 def main_loop():
     while True:
@@ -81,7 +118,12 @@ def main_loop():
                     console.print("[red]Usage: download <filename>[/red]")
                     continue
                 download_file(parts[1])
-
+            elif command.startswith("decrypt"):
+                parts = command.split()
+                if len(parts) != 2:
+                    console.print("[red]Usage: decrypt <filename>[/red]")
+                    continue
+                decrypt_file(parts[1])
             elif command == "":
                 continue
             else:
