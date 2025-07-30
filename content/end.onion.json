@@ -1,0 +1,7 @@
+{
+    "url": "end.onion",
+    "title": "Final Node",
+    "content": "You reached the edge of the darknet. Congrats, crawler!",
+    "links": [],
+    "congrats": "You collected all flags!"
+  }

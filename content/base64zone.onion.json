@@ -1,0 +1,7 @@
+{
+  "url": "base64zone.onion",
+  "title": "Base64 Dump",
+  "content": "You found a suspicious string: RkxBR3tiYXNlNjRfY3J1Y2t9",
+  "links": [],
+  "flag": "FLAG{base64_cruck}"
+}
