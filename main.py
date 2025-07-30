@@ -18,10 +18,12 @@ def show_banner():
 
 def show_help():
     console.print("[bold yellow]Available commands:[/bold yellow]")
-    console.print("  visit <url>     - Visit a darkweb page")
-    console.print("  help            - Show this help message")
-    console.print("  exit            - Exit the crawler")
-
+    console.print("  visit    <url>        - Visit a darkweb page")
+    console.print("  decrypt  <filename>   - decrypt files based on type")
+    console.print("  download <filename>   - download files")
+    console.print("  help               - Show this help message")
+    console.print("  exit               - Exit the crawler")
+    
 def download_file(filename):
     for url in visited:
         path = f"content/{url}.json"
