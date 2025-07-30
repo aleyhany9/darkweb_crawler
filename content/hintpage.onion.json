@@ -1,0 +1,11 @@
+{
+    "url": "hintpage.onion",
+    "title": "Cryptic Note",
+    "content": "The password to unlock your prize is the most common weak password used by late‑90s forums.",
+    "links": ["abc123.onion"],
+    "hidden_file": {
+    "name": "clue.b64",
+    "type": "base64",
+    "content": "aHVudGVyMg=="
+  }
+}

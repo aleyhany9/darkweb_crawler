@@ -1,13 +1,12 @@
 {
-    "url": "abc123.onion",
-    "title": "Secure Drop Server",
-    "content": "Welcome to the vault. Only trusted agents proceed.",
-    "links": ["def456.onion"],
-    "hidden_file": {
-      "name": "flag1.enc",
-      "type": "base64",
-      "key": "vault42",
-      "flag": "FLAG{trust_is_earned}"
-    }
+  "url": "abc123.onion",
+  "title": "Strange Marketplace",
+  "content": "A weird listing appears.",
+  "links": [],
+  "hidden_file": {
+    "name": "flag1.enc",
+    "type": "encrypted_flag",
+    "key": "hunter2",
+    "flag": "FLAG{darknet_pwned}"
   }
-  
+}

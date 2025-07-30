@@ -1,0 +1,12 @@
+{
+    "url": "phish.onion",
+    "title": "DarkBank Login",
+    "content": "Login to your anonymous account. Never share your credentials.",
+    "links": ["abc123.onion", "hintpage.onion"],
+    "hidden_file": {
+      "name": "fake_login.txt",
+      "type": "base64",
+      "content": "V2VsY29tZSB0byBOb3doZXJlLCA0MDBQcw=="
+    }
+  }
+  

@@ -31,7 +31,8 @@ def download_file(filename):
             if hidden and hidden["name"] == filename:
                 file_path = os.path.join("downloads", filename)
                 with open(file_path, "w") as out:
-                    out.write("ENCRYPTED DATA PLACEHOLDER")
+                    json.dump(hidden, out, indent=2)
+
 
                 console.print(f"[green]✓ Downloaded {filename} to downloads/[/green]")
                 return
