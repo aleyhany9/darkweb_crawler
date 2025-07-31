@@ -1,13 +1,12 @@
 {
-    "url": "xorpage.onion",
-    "title": "Glitched Message",
-    "content": "Something is hidden here. It's garbled.",
-    "links": ["hintpage.onion"],
-    "hidden_file": {
-      "name": "flag2.enc",
-      "type": "xor",
-      "content": "0b0d1a1d020e04140d1d060c0a18",
-      "note": "Looks like XOR. Maybe one character?"
-    }
+  "url": "xorpage.onion",
+  "title": "Glitched Message",
+  "content": "Something is hidden here. It's garbled.",
+  "links": ["xorhint.onion"],
+  "hidden_file": {
+    "name": "flag2.enc",
+    "type": "xor",
+    "content": "0b0d1a1d020e04140d1d060c0a18",
+    "note": "Looks like XOR. Maybe one character?"
   }
-  
+}

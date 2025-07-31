@@ -5,9 +5,8 @@
     "links": [
       "abc123.onion",
       "marketkey.onion",
-      "base64zone.onion",
       "xorpage.onion",
-      "notehub.onion",
-      "end.onion"
+      "xorhint.onion",
+      "base64zone.onion"
     ]
   }

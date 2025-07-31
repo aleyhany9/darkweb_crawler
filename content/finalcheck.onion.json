@@ -1,0 +1,10 @@
+{
+    "url": "finalcheck.onion",
+    "title": "Final Verification",
+    "content": "You’ve made it this far. To prove yourself, enter all three flags below.",
+    "hidden_file": {
+      "name": "finalcheck.enc",
+      "type": "finalcheck"
+    }
+  }
+  
