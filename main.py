@@ -7,11 +7,23 @@ import base64
 from rich.panel import Panel
 from rich.text import Text
 from time import sleep
+import sys
+import os
 
 console = Console()
 visited = []
 os.makedirs("downloads", exist_ok=True)
 found_flags = []
+
+def resource_path(relative_path):
+   
+    if getattr(sys, 'frozen', False):
+        
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def end_game_cinematic():
     console.clear()
@@ -66,7 +78,7 @@ def show_instructions():
 import json
 from pathlib import Path
 
-save_file = Path("darkweb_save.json")
+save_file = Path(resource_path("darkweb_save.json"))
 
 def save_game(current_url, visited, found_flags):
     state = {
@@ -80,12 +92,12 @@ def save_game(current_url, visited, found_flags):
 
 def download_file(filename):
     for url in visited:
-        path = f"content/{url}.json"
+        path = resource_path(f"content/{url}.json")
         with open(path, "r") as f:
             data = json.load(f)
             hidden = data.get("hidden_file")
             if hidden and hidden["name"] == filename:
-                file_path = os.path.join("downloads", filename)
+                file_path = resource_path(os.path.join("downloads", filename))
                 with open(file_path, "w") as out:
                     json.dump(hidden, out, indent=2)
 
@@ -95,7 +107,7 @@ def download_file(filename):
     console.print(f"[red]File {filename} not found in visited pages.[/red]")            
 
 def decrypt_file(filename):
-    path = os.path.join("downloads", filename)
+    path = resource_path(os.path.join("downloads", filename))
     if not os.path.exists(path):
         console.print(f"[red]File not found: {filename}[/red]")
         return
