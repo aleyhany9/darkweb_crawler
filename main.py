@@ -2,7 +2,6 @@ import os
 from rich import print
 from rich.console import Console
 from rich.prompt import Prompt
-import pyfiglet
 import json
 import base64
 from rich.panel import Panel
@@ -42,8 +41,6 @@ def end_game_cinematic():
     console.print("\n[bold yellow]Thank you for playing the DarkWeb Crawler Simulator [/bold yellow]\n")
 
 def show_banner():
-    banner = pyfiglet.figlet_format("DarkWeb Crawler")
-    console.print(f"[bold green]{banner}[/bold green]")
     console.print("[magenta]Welcome to the darknet simulator.[/magenta]")
     console.print("Type [cyan]help[/cyan] to see available commands.\n")
 
@@ -203,7 +200,11 @@ def main_loop():
 
                 print()   
             elif command == ("decrypt flag2.enc"):
-                console.print("XOR Decrypted: [blue]FLAG{xor_hidden_flag}[/blue]")     
+                x = input("Enter decryption key:")
+                if x == "K":
+                    console.print("XOR Decrypted: [blue]FLAG{xor_hidden_flag}[/blue]") 
+                else:
+                    console.print("[red]you enter a wrong key [/red]")        
             elif command.startswith("download"):
                 parts = command.split()
                 if len(parts) != 2:
