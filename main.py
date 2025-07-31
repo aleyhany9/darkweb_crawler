@@ -21,9 +21,18 @@ def show_help():
     console.print("  visit    <url>        - Visit a darkweb page")
     console.print("  decrypt  <filename>   - decrypt files based on type")
     console.print("  download <filename>   - download files")
-    console.print("  help               - Show this help message")
-    console.print("  exit               - Exit the crawler")
+    console.print("  help                  - Show this help message")
+    console.print("  exit                  - Exit the crawler")
+    console.print("  instructions          - show you how to play this game")
     
+def show_instructions():
+    console.print("[bold cyan]How to Play:[/bold cyan]")
+    console.print("- Start by visiting pages using: [green]visit <url>[/green]")
+    console.print("- Explore hidden files and download them: [green]download <filename>[/green]")
+    console.print("- Try decrypting the files: [green]decrypt <filename>[/green]")
+    console.print("- Use clues in each page to find keys, links, or secrets.")
+    console.print("- Your goal is to find all hidden flags across the network.\n")
+
 def download_file(filename):
     for url in visited:
         path = f"content/{url}.json"
@@ -121,6 +130,8 @@ def main_loop():
                     console.print("[red]Usage: download <filename>[/red]")
                     continue
                 download_file(parts[1])
+            elif command == "instructions":
+                show_instructions()    
             elif command.startswith("decrypt"):
                 parts = command.split()
                 if len(parts) != 2:
